@@ -79,16 +79,12 @@ RUN { \
 
 # do some fancy footwork to create a JAVA_HOME that's cross-architecture-safe
 RUN ln -svT "/usr/lib/jvm/java-9-openjdk-$(dpkg --print-architecture)" /docker-java-home
-ENV JAVA_HOME /docker-java-home
-
-ENV JAVA_VERSION 9.0.1+11
-ENV JAVA_DEBIAN_VERSION 9.0.1+11-1
 
 RUN set -ex; \
 	\
 	apt-get update; \
 	apt-get install -y \
-		openjdk-9-jre="$JAVA_DEBIAN_VERSION" \
+		openjdk-9-jre \
 	; \
 	rm -rf /var/lib/apt/lists/*;
 
